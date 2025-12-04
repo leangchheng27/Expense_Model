@@ -1,31 +1,46 @@
-import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:uuid/uuid.dart';
+const uuid = Uuid();
 
-enum ExpenseType {food, travel, leisure, work}
-
-const categoryIcons = {
-  ExpenseType.food: Icons.fastfood,
-  ExpenseType.travel: Icons.flight,
-  ExpenseType.leisure: Icons.movie,
-  ExpenseType.work: Icons.work,
-};
-
-class Expense{
-  final String id;
-  final String title;
-  final double amount;
-  final DateTime date;
-  final ExpenseType category;
-
+enum Category { food, travel, leisure, work}
+ 
+class Expense {
   Expense({
     required this.title,
     required this.amount,
     required this.date,
     required this.category,
-  }) : id = Uuid().v4();
+  }) : id = uuid.v4();
 
-  String get formattedDate{
-    return DateFormat.yMd().format(date);
-  }
+  final String id;
+  final String title;
+  final double amount;
+  final DateTime date;
+  final Category category;
 }
+
+List<Expense> dummyExpenses = [
+  Expense(
+    title: 'Flutter Course',
+    amount: 19.99,
+    date: DateTime.now(),
+    category: Category.work,
+  ),
+  Expense(
+    title: 'Cinema',
+    amount: 15.69,
+    date: DateTime.now(),
+    category: Category.leisure,
+  ),
+  Expense(
+    title: 'Groceries',
+    amount: 82.12,
+    date: DateTime.now(),
+    category: Category.food,
+  ),  
+  Expense(
+    title: 'New Shoes',
+    amount: 69.99,
+    date: DateTime.now(),
+    category: Category.travel,
+  ),
+];

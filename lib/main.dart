@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
-import 'ui/expense.dart';
+
+import 'ui/app.dart';
 
 void main() {
-  runApp(const MaterialApp(
-    debugShowCheckedModeBanner: false,
-    home: Expenses(),
-  ));
+  
+  runApp(
+    const MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: App(),
+    ),
+  );
 }
