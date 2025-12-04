@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'expenses/expense.dart';
 import 'expenses/expense_form.dart';
 import '../model/expense_model.dart';
+import '../data/expenses_data.dart';
 
 class App extends StatefulWidget {
   const App({super.key});
