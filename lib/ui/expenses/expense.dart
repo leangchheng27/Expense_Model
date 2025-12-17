@@ -2,15 +2,22 @@ import 'package:flutter/material.dart';
 import '../../model/expense_model.dart';
 
 class ExpensesView extends StatelessWidget {
-  const ExpensesView({super.key, required this.expenses});
+  const ExpensesView({super.key, required this.expenses, required this.onDeleteExpense});
 
   final List<Expense> expenses;
+  final Function(Expense) onDeleteExpense;  
 
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
       itemCount: expenses.length,
-      itemBuilder: (context, index) => ExpenseItem(expense: expenses[index]),
+      itemBuilder: (context, index) => Dismissible(
+        key: ValueKey(expenses[index].id),
+        onDismissed: (direction) {
+          onDeleteExpense(expenses[index]);
+        },
+        child: ExpenseItem(expense: expenses[index]),
+      ),
     );
   }
 }
@@ -53,7 +60,7 @@ class ExpenseItem extends StatelessWidget {
                     expense.title,
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
-                  Text("${expense.amount.toStringAsPrecision(2)} \$"),
+                  Text("\$${expense.amount.toStringAsFixed(2)}"),
                 ],
               ),
               Spacer(),
